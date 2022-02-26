@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Adesa</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="flex flex4">
+        <div class="child flex2-child">
+          <label for="url">URL</label>
+          <input type="text" id="url" class="mt-5 w-100" />
+        </div>
+        <div class="child flex3-child">
+          <label for="env">Env</label>
+          <select id="env" class="mt-5 w-100 font-size-14">
+            <option value="" disabled selected hidden></option>
+            <option value="testDev/.com">testDev/.com</option>
+            <option value="qa/.com">qa/.com</option>
+            <option value="uat/.com">uat/.com</option>
+            <option value="prepProd/.com">prepProd/.com</option>
+            <option value="testDev/.ca">testDev/.ca</option>
+            <option value="qa/.ca">qa/.ca</option>
+            <option value="uat .ca">uat/.ca</option>
+            <option value="prepProd/.ca">prepProd/.ca</option>
+          </select>
+        </div>
+        <div class="child flex1-child">
+          <span class="copy copy-username">copy</span>
+          <label for="username">Username</label>
+          <select id="username" class="mt-5 w-100">
+            <option value="" disabled selected hidden></option>
+            <option value="mniarchos">mniarchos</option>
+            <option value="dmonday">dmonday</option>
+            <option value="dnorman">dnorman</option>
+            <option value="amc123">amc123</option>
+            <option value="bigmike7">bigmike7</option>
+          </select>
+        </div>
+        <div class="child flex1-child">
+          <span class="copy copy-password">copy</span>
+          <label for="password">Password</label>
+          <input type="text" id="password" class="mt-5 w-100" />
+        </div>
+        <div class="child flex1-child">
+          <button>Fill</button>
+          <button id="go">Go</button>
+        </div>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

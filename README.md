@@ -1,1 +1,0 @@
-# newwave-browser-extensions
