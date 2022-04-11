@@ -7,7 +7,7 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/popup.css" />
     <title>Adesa</title>
   </head>
 
@@ -33,7 +33,7 @@
           </select>
         </div>
         <div class="child flex1-child">
-          <span class="copy copy-username">copy</span>
+          <span class="copy copy-username" id="copy-username">copy</span>
           <label for="username">Username</label>
           <select id="username" class="mt-5 w-100">
             <option value="" disabled selected hidden></option>
@@ -45,16 +45,17 @@
           </select>
         </div>
         <div class="child flex1-child">
-          <span class="copy copy-password">copy</span>
+          <span class="copy copy-password" id ="copy-password">copy</span>
           <label for="password">Password</label>
           <input type="text" id="password" class="mt-5 w-100" />
         </div>
         <div class="child flex1-child">
           <button>Fill</button>
           <button id="go">Go</button>
+          <button id="settings">Configure</button>
         </div>
       </div>
     </div>
-    <script src="popup.js"></script>
+    <script src="js/popup.js"></script>
   </body>
 </html>

@@ -1,0 +1,17 @@
+{
+  "name": "newwave-browser-extensions",
+  "version": "1.0.0",
+  "repository": "https://github.com/moghanbari/newwave-browser-extensions.git",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "prettier-airbnb-config": "^1.0.0",
+    "rollup": "^2.68.0"
+  },
+  "prettier": "prettier-airbnb-config",
+  "scripts": {
+    "prettier:fix": "prettier --write './**/*.{js,html}'",
+    "prettier": "prettier --check './**/*.{js,html}'",
+    "build": "./script/build.sh"
+  }
+}
