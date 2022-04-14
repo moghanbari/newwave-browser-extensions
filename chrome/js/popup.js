@@ -1,9 +1,13 @@
-import {SyncStorage} from './utils/sync-storage';
-import {sampleSetting} from './utils/sample-setting';
+import { SyncStorage } from './utils/sync-storage';
+import { sampleSetting } from './utils/sample-setting';
 
 function setPassword(password) {
   const passwordField = document.getElementById('password');
   passwordField.value = password;
+}
+
+function closePopUp() {
+  window.close();
 }
 
 window.onload = function () {
@@ -62,18 +66,19 @@ window.onload = function () {
     }
 
     document.getElementById('url').value = targetUrl;
+    document.getElementById('username').selectedIndex = 1
   };
 
   document.getElementById('go').onclick = function () {
     const newUrl = document.getElementById('url').value;
     if (newUrl.length != 0) {
       // chrome.tabs.create({ url: newUrl });
-      chrome.tabs.update({url: newUrl});
+      chrome.tabs.update({ url: newUrl });
+      closePopUp();
     }
   };
 
   document.getElementById('settings').onclick = function () {
-    alert('config clicked`');
     if (window.chrome) {
       chrome.runtime.openOptionsPage(err => {
         console.error(`Error: ${err}`);
@@ -86,32 +91,48 @@ window.onload = function () {
   };
 
   document.getElementById('copy-username').onclick = async function () {
-    debugger;
     const username = document.getElementById('username').value;
     await navigator.clipboard.writeText(username);
   };
 
   document.getElementById('copy-password').onclick = async function () {
-    const username = document.getElementById('password').value;
-    await navigator.clipboard.writeText('password');
+    const password = document.getElementById('password').value;
+    await navigator.clipboard.writeText(password);
   };
 
-  chrome.tabs.query({active: true, windowId: chrome.windows.WINDOW_ID_CURRENT}, function (tabs) {
-    const {id: tabId} = tabs[0].url;
+  document.getElementById('fill').onclick = async function () {
+    chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, function (tabs) {
+      console.log(tabs);
+      const { id: tabId } = tabs[0].url;
+  
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+  
+      const code = `(function getUrls(){
+          const href = window.location.href;
 
-    const code = `(function getUrls(){
-			  const forkUrl = document.querySelector('meta[name="octolytics-dimension-repository_parent_nwo"]') 
-				  ? document.querySelector('meta[name="octolytics-dimension-repository_parent_nwo"]').content
-				  : undefined;
-			  const url = document.querySelector('meta[name="go-import"]') 
-				  ? document.querySelector('meta[name="go-import"]').content.split(' ')[0]
-				  : undefined;
-			  return { forkUrl, url };
-		  })()`;
+          const username = '${username}';
+          const password = '${password}';
 
-    // http://infoheap.com/chrome-extension-tutorial-access-dom/
-    chrome.tabs.executeScript(tabId, {code}, function (result) {
-      // result has the return value from `code`
+          if(username) {
+            document.querySelector('#accountName').value = '${username}'
+          }
+
+          if(password) {
+            document.querySelector('#password').value = '${password}'
+          }
+
+          setTimeout(() => document.querySelector('#loginSubmit').click(), 1000);
+  
+          return { password, href };
+        })()`;
+  
+      // http://infoheap.com/chrome-extension-tutorial-access-dom/
+      chrome.tabs.executeScript(tabId, { code }, function (result) {
+        
+      });
+      
+      closePopUp();
     });
-  });
+  };
 };
