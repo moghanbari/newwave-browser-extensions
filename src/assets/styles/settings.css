@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Lato;
+  line-height: 1;
+  font-size: 17px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ccc;
+  align-items: start;
+}
+.setting {
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+}
+.button-container {
+  display: grid;
+  gap: 8px;
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+  justify-content: end;
+}
+.button-container button {
+  padding: 4px 12px;
+}
+#jsoneditor {
+  height: 70vh;
+}
+.description {
+  padding: 8px;
+  font-size: 14px;
+}

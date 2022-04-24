@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/settings.css" />
+    <link rel="stylesheet" href="styles/jsoneditor.css" />
+
+    <title>Configurations</title>
+  </head>
+
+  <body>
+    <div class="setting">
+      <div>Configuration</div>
+      <div id="jsoneditor"></div>
+      <div class="button-container">
+        <button id="save">Save</button><button id="reload">Reset</button>
+      </div>
+    </div>
+    <div class="description">
+      <pre>
+      <code>
+  {
+    users?: Array of User;
+    generalPassword?: string;
+    elements?: Elements;
+    categories: Array of Category
+  }
+
+  Category {
+    name: string;
+    users?: Array of User;
+    OverrideParentUsers: boolean
+    generalPassword?: string;
+    elements?: Elements;
+    subCategories: Array of SubCategory
+  }
+
+  SubCategory {
+    name: string;
+    users?: UsersList;
+    OverrideParentUsers: boolean
+    generalPassword?: string;
+    elements?: Elements;
+    sites: Array of Site
+  }
+
+  interface Site {
+    url: string;
+    users?: UsersList;
+    OverrideParentUsers: boolean
+    generalPassword?: string;
+    elements?: Elements;
+  }
+
+  Elements {
+    usernameElementSelector: string;
+    passwordElementSelector: string;
+    submitElementSelector: string;
+  }
+  
+  User {
+    username: string;
+    password?: string;
+  }
+</code>
+</pre>
+    </div>
+    <script src="js/jsoneditor-minimalist.js"></script>
+    <script src="js/settings.js"></script>
+  </body>
+</html>
