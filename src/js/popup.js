@@ -1,28 +1,16 @@
-import { SyncStorage } from './utils/sync-storage';
-import { sampleSetting } from './utils/sample-setting';
-
 function setPassword(password) {
   const passwordField = document.getElementById('password');
   passwordField.value = password;
 }
 
-function closePopUp() {
-  window.close();
-}
+//  async SettingManager.load() to load the setting into memory
+//  async getCategories()
+//  async getSubCategories(categoryName)
+//  async getSites(categoryName, subCategoryName)
+//  async getUsers(categoryName, subCategoryName, siteName) {
+//  async getPassword(categoryName, subCategoryName, siteName, userName)
 
 window.onload = function () {
-  storage = new SyncStorage(chrome || browser);
-  storage
-    .get(['settings'])
-    .then(data => {
-      console.log('data===>', data);
-
-      this.settings = !data || !data.settings ? sampleSetting : data.settings;
-    })
-    .catch(e => {
-      console.log(e);
-    });
-
   document.getElementById('env').onchange = function (e) {
     const selectedEnv = e.target.value;
     let targetUrl = '';

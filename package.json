@@ -4,14 +4,23 @@
   "repository": "https://github.com/moghanbari/newwave-browser-extensions.git",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-core": "^6.26.3",
     "prettier": "^2.5.1",
     "prettier-airbnb-config": "^1.0.0",
-    "rollup": "^2.68.0"
+    "rollup": "^2.70.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "prettier": "prettier-airbnb-config",
   "scripts": {
     "prettier:fix": "prettier --write './**/*.{js,html}'",
     "prettier": "prettier --check './**/*.{js,html}'",
-    "build": "./script/build.sh"
+    "build": "rollup -c ",
+    "build:prod": "rollup -c --environment prod"
   }
 }

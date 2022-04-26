@@ -1,7 +1,7 @@
-export class SyncStorage {
-  constructor(browser) {
-    this.runtime = browser.runtime;
-    this.storageArea = browser.storage.sync;
+class Storage {
+  constructor() {
+    this.runtime = chrome.runtime;
+    this.storageArea = chrome.storage.sync;
   }
 
   get(keys) {
@@ -24,3 +24,5 @@ export class SyncStorage {
     this.storageArea.remove(keys, () => {});
   }
 }
+
+export const SyncStorage = new Storage();
