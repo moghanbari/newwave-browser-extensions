@@ -1,7 +1,7 @@
-import {SettingsProvider} from './settings-provider';
-import {SettingSanitizer} from './settings-sanitizer';
-import {SyncStorage} from './sync-storage';
-import {LZString} from './lz-string.js';
+import { SettingsProvider } from './settings-provider';
+import { SettingSanitizer } from './settings-sanitizer';
+import { SyncStorage } from './sync-storage';
+import { LZString } from './lz-string.js';
 
 class Settings {
   #storageKey = 'password-extension-storage-key';
@@ -11,7 +11,15 @@ class Settings {
     if (!this.#loaded) {
       await this.#loadFromStorage();
     }
-    return SettingsProvider.getCategoryNames();
+    return SettingsProvider.getCategories();
+  }
+
+  async getSubCategoriesObj(categoryName) {
+    if (!this.#loaded) {
+      await this.#loadFromStorage();
+    }
+
+    return SettingsProvider.getSubCategory(categoryName);
   }
 
   async getSubCategories(categoryName) {
@@ -54,23 +62,28 @@ class Settings {
   async load() {
     const setting = await this.#loadFromStorage();
     this.#loaded = true;
+
     return setting;
   }
 
   async #loadFromStorage() {
     const storageValue = await SyncStorage.get(this.#storageKey);
+
     if (storageValue && storageValue[this.#storageKey]) {
       const compressedString = storageValue[this.#storageKey];
       const settingStr = LZString.decompressFromUTF16(compressedString);
       let setting;
+
       try {
         setting = JSON.parse(settingStr);
       } catch {
         setting = {};
       }
+
       SettingsProvider.setSetting(setting);
       return setting;
     }
+
     return false;
   }
 
@@ -83,7 +96,7 @@ class Settings {
     if (Object.entries(setting).length >= 0) {
       let settingStr = JSON.stringify(setting);
       settingStr = LZString.compressToUTF16(settingStr);
-      await SyncStorage.set({[this.#storageKey]: settingStr});
+      await SyncStorage.set({ [this.#storageKey]: settingStr });
       return setting;
     }
 

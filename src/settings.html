@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles/settings.css" />
-    <link rel="stylesheet" href="styles/jsoneditor.css" />
 
-    <title>Configurations</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="styles/settings.css" />
+  <link rel="stylesheet"
+    href="styles/jsoneditor.css" />
 
-  <body>
-    <div class="setting">
-      <div>Configuration</div>
-      <div id="jsoneditor"></div>
-      <div class="button-container">
-        <button id="save">Save</button><button id="reload">Reset</button>
-      </div>
+  <title>Configurations</title>
+</head>
+
+<body>
+  <div class="setting">
+    <div>Configuration</div>
+    <div id="jsoneditor"></div>
+    <div class="button-container">
+      <button id="save">Save</button><button id="reload">Reset</button>
     </div>
-    <div class="description">
-      <pre>
+  </div>
+  <div class="description">
+    <pre>
       <code>
   {
     users?: Array of User;
@@ -69,8 +71,9 @@
   }
 </code>
 </pre>
-    </div>
-    <script src="js/jsoneditor-minimalist.js"></script>
-    <script src="js/settings.js"></script>
-  </body>
+  </div>
+  <script src="js/jsoneditor-minimalist.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+
 </html>

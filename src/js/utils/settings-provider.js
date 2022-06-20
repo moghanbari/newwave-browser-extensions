@@ -1,7 +1,14 @@
 class Settings {
   setSetting(setting) {
-    if(!setting)
     this.setting = setting;
+  }
+
+  getCategories() {
+    if (!this.setting) {
+      return false;
+    }
+
+    return this.setting?.categories;
   }
 
   getCategoryNames() {
@@ -10,6 +17,12 @@ class Settings {
     }
 
     return this.#getNames(this.setting?.categories);
+  }
+
+  getSubCategory(categoryName) {
+    const category = this.#getCategoryByName(categoryName);
+
+    return category?.subCategories;
   }
 
   getSubCategoryNames(categoryName) {
@@ -109,13 +122,13 @@ class Settings {
     let elementSelectors = this.setting?.elementSelectors || {};
 
     const category = this.#getCategoryByName(categoryName);
-    elementSelectors = {...elementSelectors, ...(category?.elementSelectors || {})};
+    elementSelectors = { ...elementSelectors, ...(category?.elementSelectors || {}) };
 
     const subCategory = this.#getSubCategoryByName(categoryName, subCategoryName);
-    elementSelectors = {...elementSelectors, ...(subCategory?.elementSelectors || {})};
+    elementSelectors = { ...elementSelectors, ...(subCategory?.elementSelectors || {}) };
 
     const site = this.#getSiteByName(categoryName, subCategoryName, siteName);
-    return {...elementSelectors, ...(site?.elementSelectors || {})};
+    return { ...elementSelectors, ...(site?.elementSelectors || {}) };
   }
 
   #getUser(array, username) {

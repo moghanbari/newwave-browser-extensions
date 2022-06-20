@@ -2,7 +2,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import copy from 'rollup-plugin-copy';
 import babel from 'rollup-plugin-babel';
-import {terser} from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 
 export default [
   {
@@ -13,7 +13,7 @@ export default [
       format: 'umd',
     },
     plugins: [
-      process.env.production && terser(),
+      process.env.prod && terser(),
       resolve(),
       commonjs(),
       babel({
@@ -47,7 +47,7 @@ export default [
             ],
             dest: 'dist',
           },
-          {src: ['src/js/utils/jsoneditor-minimalist.js'], dest: 'dist/js'},
+          { src: ['src/js/jsoneditor-minimalist.js'], dest: 'dist/js' },
         ],
       }),
     ],
