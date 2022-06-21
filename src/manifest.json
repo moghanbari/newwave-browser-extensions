@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Watchmen",
   "version": "1.0",
   "description": "Watchmen Anywhere",
@@ -8,7 +8,7 @@
     "48": "img/icons48.png",
     "16": "img/icons16.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "img/icons16.png",
     "default_popup": "popup.html"
   },
@@ -16,6 +16,13 @@
     "page": "settings.html",
     "open_in_tab": true
   },
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "permissions": ["activeTab", "declarativeContent", "storage"]
+  "content_security_policy": {
+    "script-src": "self",
+    "object-src": "self"
+  },
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage"
+  ]
 }

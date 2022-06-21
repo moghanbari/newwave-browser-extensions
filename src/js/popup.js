@@ -143,34 +143,31 @@ window.onload = async function () {
 
   document.getElementById('fill').onclick = async function () {
     chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, function (tabs) {
-      console.log(tabs);
       const { id: tabId } = tabs[0].url;
 
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      const code = `(function getUrls(){
-          const href = window.location.href;
+      function getUrls(username, password) {
+        const href = window.location.href;
 
-          const username = '${username}';
-          const password = '${password}';
+        if (username) {
+          document.querySelector('#accountName').value = username
+        }
 
-          if(username) {
-            document.querySelector('#accountName').value = '${username}'
-          }
+        if (password) {
+          document.querySelector('#password').value = password
+        }
 
-          if(password) {
-            document.querySelector('#password').value = '${password}'
-          }
+        setTimeout(() => document.querySelector('#loginSubmit').click(), 1000);
 
-          setTimeout(() => document.querySelector('#loginSubmit').click(), 1000);
-  
-          return { password, href };
-        })()`;
+        return { password, href };
+      }
 
-      // http://infoheap.com/chrome-extension-tutorial-access-dom/
-      chrome.tabs.executeScript(tabId, { code }, function (result) {
-
+      chrome.scripting.executeScript({
+        target: { tabId },
+        func: getUrls,
+        args: [username, password],
       });
 
       closePopUp();
